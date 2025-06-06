@@ -66,14 +66,14 @@ body {
 /* Sidebar */
 .sidebar {
 	width: 320px;
-	color: var(--text-muted);
+	background-color: #1a202c;
 	position: fixed;
 	height: 100vh;
 	overflow-y: auto;
 	z-index: 100;
 }
 .profile-section {
-	background-color: var(--sidebar-profile);
+	background-color: #2d3748;
 	margin: 40px;
 	padding: 40px 20px;
 	border-radius: 12px;
@@ -247,14 +247,13 @@ body {
 }
 .card-header {
 	background-color: var(--bg-primary);
-    border-color: var(--border-color);
 	padding: 20px;
-	border-bottom: 1px solid #e2e8f0;
+	border-bottom: 1px solid var(--border-color);
 }
 .card-title {
 	font-size: 18px;
 	font-weight: 700;
-	color: #2d3748;
+	color: var(--text-primary);
 	font-style: italic;
 }
 .card-body {
@@ -296,26 +295,26 @@ body {
 }
 .projects-header {
 	background-color: var(--bg-primary);
-    border-color: var(--border-color);
 	padding: 20px;
-	border-bottom: 1px solid #e2e8f0;
+	border-bottom: 1px solid var(--border-color);
 }
 .projects-title {
 	font-size: 20px;
 	font-weight: 700;
-	color: #2d3748;
+	color: var(--text-primary);
 	font-style: italic;
 }
 .projects-grid {
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
 	gap: 30px;
+	background-color: var(--bg-primary);
+    border-color: var(--border-color);
 	padding: 30px;
 }
 .project-card {
 	background: var(--bg-card);
-    border-color: var(--border-color);
-	border: 1px solid #e2e8f0;
+	border: 1px solid var(--border-color);
 	border-radius: 8px;
 	overflow: hidden;
 }
@@ -406,22 +405,20 @@ body {
 }
 .section {
 	background: var(--bg-card);
-    border-color: var(--border-color);
-	border: 1px solid #e2e8f0;
+	border: 1px solid var(--border-color);
 	border-radius: 12px;
 	margin-bottom: 30px;
 	overflow: hidden;
 }
 .section-header {
 	background-color: var(--bg-primary);
-    border-color: var(--border-color);
 	padding: 20px;
-	border-bottom: 1px solid #e2e8f0;
+	border-bottom: 1px solid var(--border-color);
 }
 .section-title {
 	font-size: 20px;
 	font-weight: 700;
-	color: #2d3748;
+	color: var(--text-primary);
 	font-style: italic;
 }
 .section-body {
@@ -439,7 +436,7 @@ body {
 .item-title {
 	font-size: 18px;
 	font-weight: 600;
-	color: #2d3748;
+	color: var(--text-primary);
 	margin-bottom: 5px;
 	font-style: italic;
 }
@@ -466,15 +463,14 @@ body {
 }
 .skill-category {
 	background: var(--bg-card);
-    border-color: var(--border-color);
-	border: 1px solid #e2e8f0;
+	border: 1px solid var(--border-color);
 	border-radius: 8px;
 	padding: 20px;
 }
 .skill-category-title {
 	font-size: 16px;
 	font-weight: 600;
-	color: #2d3748;
+	color: var(--text-primary);
 	margin-bottom: 15px;
 	font-style: italic;
 }
@@ -490,8 +486,7 @@ body {
 }
 .goal-item {
 	background: var(--bg-card);
-    border-color: var(--border-color);
-	border: 1px solid #e2e8f0;
+	border: 1px solid var(--border-color);
 	border-radius: 8px;
 	padding: 20px;
 	margin-bottom: 20px;
@@ -499,7 +494,7 @@ body {
 .goal-title {
 	font-size: 16px;
 	font-weight: 600;
-	color: #2d3748;
+	color: var(--text-primary);
 	margin-bottom: 10px;
 	font-style: italic;
 }
@@ -510,8 +505,7 @@ body {
 }
 .contact-form {
 	background: var(--bg-card);
-    border-color: var(--border-color);
-	border: 1px solid #e2e8f0;
+	border: 1px var(--border-color);
 	border-radius: 12px;
 	padding: 30px;
 }
@@ -522,18 +516,17 @@ body {
 	display: block;
 	font-size: 14px;
 	font-weight: 600;
-	color: #2d3748;
+	color: var(--text-primary);
 	margin-bottom: 5px;
 }
 .form-input, .form-textarea {
 	width: 100%;
 	padding: 12px;
-	border: 1px solid #e2e8f0;
+	border: 1px solid var(--border-color);
 	border-radius: 8px;
 	font-size: 14px;
 	background-color: var(--bg-card);
     color: var(--text-primary);
-    border-color: var(--border-color);
 	transition: border-color 0.3s ease;
 }
 .form-input:focus, .form-textarea:focus {
@@ -1207,7 +1200,32 @@ body {
 	<div id="image-preview-popup"></div>
 </div>
 <script>
-	  
+	  // Dark Mode Implementation
+	  function toggleTheme() {
+		  const html = document.documentElement;
+		  const currentTheme = html.getAttribute('data-theme');
+		  const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+		  html.setAttribute('data-theme', newTheme);
+		  localStorage.setItem('theme', newTheme);
+
+		  // Update icon
+		  const icon = document.getElementById('theme-icon');
+		  icon.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+
+		  // Track theme change
+		  trackEvent('theme_toggle', { theme: newTheme });
+		}
+
+		// Load saved theme on page load
+	  function loadTheme() {
+		  const savedTheme = localStorage.getItem('theme') || 'light';
+		  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+		  const theme = savedTheme === 'auto' ? (prefersDark ? 'dark' : 'light') : savedTheme;
+
+		  document.documentElement.setAttribute('data-theme', theme);
+		  document.getElementById('theme-icon').textContent = theme === 'dark' ? '☀️' : '🌙';
+		}
 	  function showPreview(event, imageUrl) {
 		  const popup = document.getElementById('image-preview-popup');
 		  popup.innerHTML = `<img src="${imageUrl}" alt="Full Preview">`;
