@@ -18,12 +18,8 @@
 <!-- Optimized favicon setup -->
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👨‍💻</text></svg>">
 
-<!-- Preload critical resources -->
-<link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" as="style">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
-
 <style>
-/* CSS Variables - Optimized for performance */
+/* CSS Variables for consistent theming */
 :root {
   --bg-primary: #f7fafc;
   --bg-secondary: #ffffff;
@@ -36,11 +32,6 @@
   --sidebar-profile: #2d3748;
   --accent-primary: #4299e1;
   --accent-secondary: #3182ce;
-  --transition-fast: 0.15s ease;
-  --transition-medium: 0.3s ease;
-  --border-radius: 12px;
-  --shadow-light: 0 2px 8px rgba(66, 153, 225, 0.1);
-  --shadow-medium: 0 4px 12px rgba(0,0,0,0.1);
 }
 
 [data-theme="dark"] {
@@ -55,14 +46,10 @@
   --sidebar-profile: #1a202c;
 }
 
-/* Reset and base styles - Optimized */
+/* Reset and base styles */
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-}
-
-*::before, *::after {
   box-sizing: border-box;
 }
 
@@ -70,22 +57,19 @@ body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   background-color: var(--bg-primary);
   color: var(--text-primary);
-  transition: background-color var(--transition-medium), color var(--transition-medium);
+  transition: background-color 0.3s ease, color 0.3s ease;
   overflow-x: hidden;
   min-height: 100vh;
   line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Container - GPU accelerated */
+/* Container */
 .container {
   display: flex;
   min-height: 100vh;
-  will-change: transform;
 }
 
-/* Sidebar - Optimized positioning and transforms */
+/* Sidebar - FIXED positioning issues */
 .sidebar {
   width: 320px;
   background-color: var(--sidebar-bg);
@@ -93,9 +77,8 @@ body {
   height: 100vh;
   overflow-y: auto;
   z-index: 100;
-  transform: translateZ(0); /* Force GPU acceleration */
-  will-change: transform;
-  scrollbar-width: thin;
+  top: 0;
+  left: 0;
 }
 
 .sidebar::-webkit-scrollbar {
@@ -111,14 +94,13 @@ body {
   border-radius: 3px;
 }
 
-/* Profile section - Optimized animations */
+/* Profile section */
 .profile-section {
   background-color: var(--sidebar-profile);
   margin: 40px;
   padding: 40px 20px;
-  border-radius: var(--border-radius);
+  border-radius: 12px;
   text-align: center;
-  will-change: transform;
 }
 
 .profile-photo {
@@ -135,7 +117,7 @@ body {
   font-size: 12px;
   font-weight: 500;
   overflow: hidden;
-  transition: transform var(--transition-fast);
+  transition: transform 0.3s ease;
 }
 
 .profile-photo:hover {
@@ -178,14 +160,14 @@ body {
   font-size: 11px;
   font-weight: 600;
   display: inline-block;
-  transition: transform var(--transition-fast);
+  transition: transform 0.2s ease;
 }
 
 .gpa-badge:hover {
   transform: translateY(-2px);
 }
 
-/* Navigation - Optimized for performance */
+/* Navigation */
 .nav-menu {
   list-style: none;
   padding: 20px 40px;
@@ -203,9 +185,8 @@ body {
   border-radius: 8px;
   font-size: 14px;
   font-weight: 500;
-  transition: all var(--transition-fast);
+  transition: all 0.3s ease;
   cursor: pointer;
-  will-change: background-color, color;
 }
 
 .nav-link:hover {
@@ -241,33 +222,29 @@ body {
   color: var(--accent-primary);
 }
 
-/* Main content - GPU optimized */
+/* Main content - FIXED margin */
 .main-content {
   margin-left: 320px;
   flex: 1;
   background-color: var(--bg-secondary);
-  will-change: transform;
-  transform: translateZ(0);
+  min-height: 100vh;
 }
 
-/* Page transitions - Optimized */
+/* Page transitions */
 .page {
   display: none;
   padding: 40px;
   min-height: 100vh;
   opacity: 0;
-  transform: translateY(20px);
-  transition: opacity var(--transition-medium), transform var(--transition-medium);
-  will-change: opacity, transform;
+  transition: opacity 0.3s ease;
 }
 
 .page.active {
   display: block;
   opacity: 1;
-  transform: translateY(0);
 }
 
-/* Hero section - GPU accelerated */
+/* Hero section */
 .hero-section {
   background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
   color: white;
@@ -277,19 +254,6 @@ body {
   text-align: center;
   position: relative;
   overflow: hidden;
-  will-change: transform;
-  transform: translateZ(0);
-}
-
-.hero-section::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: radial-gradient(circle at 20% 80%, rgba(255,255,255,0.1) 0%, transparent 50%);
-  pointer-events: none;
 }
 
 .hero-name {
@@ -297,7 +261,6 @@ body {
   font-weight: 800;
   margin-bottom: 12px;
   font-style: italic;
-  will-change: transform;
 }
 
 .hero-title {
@@ -327,8 +290,7 @@ body {
   border-radius: 14px;
   font-size: 12px;
   font-weight: 600;
-  transition: transform var(--transition-fast), background-color var(--transition-fast);
-  will-change: transform;
+  transition: all 0.3s ease;
 }
 
 .hero-badge:hover {
@@ -336,7 +298,7 @@ body {
   background-color: rgba(255,255,255,0.3);
 }
 
-/* Content grid - Optimized layout */
+/* Content grid */
 .content-row {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -347,15 +309,14 @@ body {
 .content-card {
   background: var(--bg-card);
   border: 1px solid var(--border-color);
-  border-radius: var(--border-radius);
+  border-radius: 12px;
   overflow: hidden;
-  transition: all var(--transition-medium);
-  will-change: transform, box-shadow;
+  transition: all 0.3s ease;
 }
 
 .content-card:hover {
   transform: translateY(-4px);
-  box-shadow: var(--shadow-medium);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
 .card-header {
@@ -408,11 +369,11 @@ body {
 .status-project { color: #805ad5; }
 .status-seeking { color: #d69e2e; }
 
-/* Projects section - Optimized grid */
+/* Projects section */
 .projects-section {
   background: var(--bg-card);
   border: 1px solid var(--border-color);
-  border-radius: var(--border-radius);
+  border-radius: 12px;
   overflow: hidden;
 }
 
@@ -437,14 +398,13 @@ body {
   padding: 30px;
 }
 
-/* Project cards - Performance optimized */
+/* Project cards */
 .project-card {
   background: var(--bg-card);
   border: 1px solid var(--border-color);
   border-radius: 8px;
   overflow: hidden;
-  transition: all var(--transition-medium);
-  will-change: transform, box-shadow;
+  transition: all 0.3s ease;
   position: relative;
 }
 
@@ -469,8 +429,7 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform var(--transition-medium);
-  will-change: transform;
+  transition: transform 0.3s ease;
 }
 
 .project-card:hover .project-image img {
@@ -492,7 +451,7 @@ body {
 .project-title a {
   color: inherit;
   text-decoration: none;
-  transition: color var(--transition-fast);
+  transition: color 0.3s ease;
 }
 
 .project-title a:hover {
@@ -530,7 +489,6 @@ body {
   border-radius: 16px;
   margin-bottom: 30px;
   text-align: center;
-  will-change: transform;
 }
 
 .page-title {
@@ -545,14 +503,13 @@ body {
   color: #bee3f8;
 }
 
-/* Sections - Optimized */
+/* Sections */
 .section {
   background: var(--bg-card);
   border: 1px solid var(--border-color);
-  border-radius: var(--border-radius);
+  border-radius: 12px;
   margin-bottom: 30px;
   overflow: hidden;
-  will-change: transform;
 }
 
 .section-header {
@@ -572,14 +529,14 @@ body {
   padding: 30px;
 }
 
-/* List items - Optimized */
+/* List items */
 .education-item, 
 .experience-item, 
 .award-item {
   border-bottom: 1px solid var(--border-color);
   padding-bottom: 20px;
   margin-bottom: 20px;
-  transition: padding-left var(--transition-fast);
+  transition: padding-left 0.3s ease;
 }
 
 .education-item:hover,
@@ -622,7 +579,7 @@ body {
   line-height: 1.6;
 }
 
-/* Skills grid - Optimized */
+/* Skills grid */
 .skills-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -634,12 +591,12 @@ body {
   border: 1px solid var(--border-color);
   border-radius: 8px;
   padding: 20px;
-  transition: all var(--transition-medium);
+  transition: all 0.3s ease;
 }
 
 .skill-category:hover {
   transform: translateY(-2px);
-  box-shadow: var(--shadow-light);
+  box-shadow: 0 2px 8px rgba(66, 153, 225, 0.1);
 }
 
 .skill-category-title {
@@ -659,8 +616,7 @@ body {
   font-size: 12px;
   font-weight: 500;
   margin: 4px;
-  transition: all var(--transition-fast);
-  cursor: default;
+  transition: all 0.3s ease;
 }
 
 .skill-item:hover {
@@ -675,12 +631,12 @@ body {
   border-radius: 8px;
   padding: 20px;
   margin-bottom: 20px;
-  transition: all var(--transition-medium);
+  transition: all 0.3s ease;
 }
 
 .goal-item:hover {
   transform: translateX(8px);
-  box-shadow: var(--shadow-light);
+  box-shadow: 0 2px 8px rgba(66, 153, 225, 0.1);
 }
 
 .goal-title {
@@ -697,11 +653,11 @@ body {
   line-height: 1.6;
 }
 
-/* Forms - Optimized */
+/* Forms */
 .contact-form {
   background: var(--bg-card);
   border: 1px solid var(--border-color);
-  border-radius: var(--border-radius);
+  border-radius: 12px;
   padding: 30px;
 }
 
@@ -726,8 +682,7 @@ body {
   font-size: 14px;
   background-color: var(--bg-card);
   color: var(--text-primary);
-  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
-  will-change: border-color;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .form-input:focus, 
@@ -751,8 +706,7 @@ body {
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
-  transition: all var(--transition-fast);
-  will-change: background-color, transform;
+  transition: all 0.3s ease;
 }
 
 .form-button:hover {
@@ -765,18 +719,11 @@ body {
 }
 
 .input-error {
-  border: 2px solid #e74c3c;
+  border: 2px solid #e74c3c !important;
   background-color: #fff6f6;
-  animation: shake 0.5s ease-in-out;
 }
 
-@keyframes shake {
-  0%, 100% { transform: translateX(0); }
-  25% { transform: translateX(-5px); }
-  75% { transform: translateX(5px); }
-}
-
-/* Theme toggle - Optimized */
+/* Theme toggle - FIXED */
 .theme-toggle {
   position: fixed;
   top: 20px;
@@ -792,9 +739,8 @@ body {
   justify-content: center;
   cursor: pointer;
   font-size: 20px;
-  transition: all var(--transition-medium);
-  box-shadow: var(--shadow-medium);
-  will-change: transform;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
 .theme-toggle:hover {
@@ -811,8 +757,7 @@ body {
   border-radius: 6px;
   text-decoration: none;
   font-weight: bold;
-  transition: all var(--transition-fast);
-  will-change: background-color, transform;
+  transition: all 0.3s ease;
 }
 
 .resume-button:hover {
@@ -825,7 +770,7 @@ body {
   margin: 15px auto -25px auto;
 }
 
-/* Image preview popup - Optimized */
+/* Image preview popup */
 #image-preview-popup {
   display: none;
   position: fixed;
@@ -837,9 +782,8 @@ body {
   max-width: 90vw;
   max-height: 70vh;
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
-  will-change: opacity, transform;
   opacity: 0;
-  transition: opacity var(--transition-medium);
+  transition: opacity 0.3s ease;
 }
 
 #image-preview-popup.show {
@@ -854,7 +798,7 @@ body {
   border-radius: 8px;
 }
 
-/* Alert system - Optimized */
+/* Alert system */
 .custom-alert {
   position: fixed;
   top: 20px;
@@ -862,7 +806,6 @@ body {
   z-index: 9999;
   max-width: 400px;
   animation: slideIn 0.3s ease;
-  will-change: transform, opacity;
 }
 
 @keyframes slideIn {
@@ -878,7 +821,7 @@ body {
 
 .custom-alert-content {
   background: var(--bg-card);
-  border-radius: var(--border-radius);
+  border-radius: 12px;
   padding: 16px 20px;
   display: flex;
   align-items: center;
@@ -924,12 +867,27 @@ body {
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  transition: all var(--transition-fast);
+  transition: all 0.3s ease;
 }
 
 .custom-alert-close:hover {
   background-color: var(--bg-primary);
   color: var(--text-secondary);
+}
+
+/* Dark mode specific styles */
+[data-theme="dark"] .theme-toggle {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+[data-theme="dark"] .skill-item {
+  background-color: rgba(66, 153, 225, 0.2);
+  color: #90cdf4;
+}
+
+[data-theme="dark"] .form-input:focus,
+[data-theme="dark"] .form-textarea:focus {
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.2);
 }
 
 /* Mobile optimizations */
@@ -948,16 +906,12 @@ body {
   .main-content {
     margin-left: 280px;
   }
-  .hero-name, 
-  .page-title {
-    font-size: clamp(28px, 4vw, 36px);
-  }
 }
 
 @media (max-width: 768px) {
   .sidebar {
     transform: translateX(-100%);
-    transition: transform var(--transition-medium);
+    transition: transform 0.3s ease;
     width: 280px;
   }
   
@@ -986,8 +940,7 @@ body {
     border-radius: 8px;
     cursor: pointer;
     font-size: 18px;
-    transition: all var(--transition-fast);
-    will-change: background-color;
+    transition: all 0.3s ease;
   }
   
   .mobile-menu-btn:hover {
@@ -1003,7 +956,7 @@ body {
     height: 100%;
     background: rgba(0,0,0,0.5);
     z-index: 99;
-    transition: opacity var(--transition-medium);
+    transition: opacity 0.3s ease;
   }
   
   .mobile-overlay.active {
@@ -1036,31 +989,7 @@ body {
   }
 }
 
-/* Dark mode specific optimizations */
-[data-theme="dark"] .theme-toggle {
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-}
-
-[data-theme="dark"] .skill-item {
-  background-color: rgba(66, 153, 225, 0.2);
-  color: #90cdf4;
-}
-
-[data-theme="dark"] .form-input:focus,
-[data-theme="dark"] .form-textarea:focus {
-  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.2);
-}
-
 /* Performance optimizations */
-.will-change-transform {
-  will-change: transform;
-}
-
-.will-change-opacity {
-  will-change: opacity;
-}
-
-/* Reduce motion for accessibility */
 @media (prefers-reduced-motion: reduce) {
   * {
     animation-duration: 0.01ms !important;
@@ -1069,83 +998,28 @@ body {
   }
 }
 
-/* Print styles */
-@media print {
-  .sidebar,
-  .theme-toggle,
-  .mobile-menu-btn {
-    display: none;
-  }
-  
-  .main-content {
-    margin-left: 0;
-  }
-  
-  .page {
-    display: block !important;
-    opacity: 1 !important;
-    transform: none !important;
-  }
-}
-
-/* High contrast mode support */
-@media (prefers-contrast: high) {
-  :root {
-    --border-color: #000000;
-    --text-muted: #333333;
-  }
-  
-  [data-theme="dark"] {
-    --border-color: #ffffff;
-    --text-muted: #cccccc;
-  }
-}
-
-/* Confetti animation - Optimized */
+/* Confetti animation */
 @keyframes fall {
   to {
     transform: translateY(100vh) rotate(360deg);
     opacity: 0;
   }
 }
-
-/* Loading states */
-.loading {
-  opacity: 0.7;
-  pointer-events: none;
-}
-
-.loading::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(255,255,255,0.8);
-  border-radius: inherit;
-}
-
-[data-theme="dark"] .loading::after {
-  background: rgba(0,0,0,0.8);
-}
 </style>
 </head>
 <body>
 <div class="container"> 
-  <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Toggle mobile menu">☰</button>
+  <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
   <div class="mobile-overlay" onclick="closeMobileMenu()"></div>
-  <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Dark Mode" aria-label="Toggle dark mode">
+  <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Dark Mode">
     <span id="theme-icon">🌙</span>
   </button>
   
   <!-- Sidebar -->
-  <nav class="sidebar" role="navigation" aria-label="Main navigation">
+  <nav class="sidebar">
     <div class="profile-section">
-      <div class="profile-photo" aria-label="Profile photo"> 
-        <img src="" alt="Lenny Paz profile photo" style="display: none;" 
-             onload="this.style.display='block'; this.parentNode.innerHTML=this.outerHTML;" 
-             loading="lazy"> 
+      <div class="profile-photo"> 
+        <img src="" alt="Profile Photo" style="display: none;" onload="this.style.display='block'; this.parentNode.innerHTML=this.outerHTML;"> 
         <span>PHOTO</span> 
       </div>
       <h1 class="profile-name">Lenny Paz</h1>
@@ -1156,32 +1030,25 @@ body {
     
     <ul class="nav-menu">
       <li class="nav-item"> 
-        <a class="nav-link active" onclick="showPage('home', event)" 
-           role="button" tabindex="0" aria-current="page">Home</a> 
+        <a class="nav-link active" onclick="showPage('home', event)">Home</a> 
       </li>
       <li class="nav-item"> 
-        <a class="nav-link" onclick="showPage('education', event)" 
-           role="button" tabindex="0">Education</a> 
+        <a class="nav-link" onclick="showPage('education', event)">Education</a> 
       </li>
       <li class="nav-item"> 
-        <a class="nav-link" onclick="showPage('experience', event)" 
-           role="button" tabindex="0">Experience</a> 
+        <a class="nav-link" onclick="showPage('experience', event)">Experience</a> 
       </li>
       <li class="nav-item"> 
-        <a class="nav-link" onclick="showPage('technical-skills', event)" 
-           role="button" tabindex="0">Technical Skills</a> 
+        <a class="nav-link" onclick="showPage('technical-skills', event)">Technical Skills</a> 
       </li>
       <li class="nav-item"> 
-        <a class="nav-link" onclick="showPage('career-goals', event)" 
-           role="button" tabindex="0">Career Goals</a> 
+        <a class="nav-link" onclick="showPage('career-goals', event)">Career Goals</a> 
       </li>
       <li class="nav-item"> 
-        <a class="nav-link" onclick="showPage('contact', event)" 
-           role="button" tabindex="0">Contact</a> 
+        <a class="nav-link" onclick="showPage('contact', event)">Contact</a> 
       </li>
       <li class="nav-item"> 
-        <a href="Lenny Paz - Resume.pdf" download class="resume-button spacer-button" 
-           aria-label="Download PDF resume"> 
+        <a href="Lenny Paz - Resume.pdf" download class="resume-button spacer-button"> 
           <span>📄</span> Download PDF Resume
         </a> 
       </li>
@@ -1196,7 +1063,7 @@ body {
   </nav>
   
   <!-- Main Content -->
-  <main class="main-content" role="main"> 
+  <main class="main-content"> 
     <!-- Home Page -->
     <div id="home" data-page="home" class="page active">
       <div class="hero-section">
@@ -1255,13 +1122,10 @@ body {
           <article class="project-card" data-project="IR Website">
             <div class="project-image" 
                  onmouseenter="showPreview(event, '../Web Project Images/IR Web.png')" 
-                 onmouseleave="hidePreview()"
-                 role="img" 
-                 aria-label="Interactive Resume Website preview">
+                 onmouseleave="hidePreview()">
               <img class="preview-thumb" 
                    src="../Web Project Images/IR Web.png" 
-                   alt="Interactive Resume Website screenshot"
-                   loading="lazy"/>
+                   alt="Interactive Resume Website screenshot"/>
             </div>
             <div class="project-content">
               <h3 class="project-title">
@@ -1280,13 +1144,10 @@ body {
           <article class="project-card" data-project="DBMS SQL">
             <div class="project-image" 
                  onmouseenter="showPreview(event, '../Web Project Images/IR SQL.png')" 
-                 onmouseleave="hidePreview()"
-                 role="img"
-                 aria-label="Database Management System preview">
+                 onmouseleave="hidePreview()">
               <img class="preview-thumb" 
                    src="../Web Project Images/IR SQL.png" 
-                   alt="Database Management System screenshot"
-                   loading="lazy"/>
+                   alt="Database Management System screenshot"/>
             </div>
             <div class="project-content">
               <h3 class="project-title">Database Management System</h3>
@@ -1301,13 +1162,10 @@ body {
           <article class="project-card" data-project="Wireframe">
             <div class="project-image" 
                  onmouseenter="showPreview(event, '../Web Project Images/IR Wire.png')" 
-                 onmouseleave="hidePreview()"
-                 role="img"
-                 aria-label="All American Inc. Wireframe preview">
+                 onmouseleave="hidePreview()">
               <img class="preview-thumb" 
                    src="../Web Project Images/IR Wire.png" 
-                   alt="All American Inc. Wireframe screenshot"
-                   loading="lazy"/>
+                   alt="All American Inc. Wireframe screenshot"/>
             </div>
             <div class="project-content">
               <h3 class="project-title">
@@ -1649,70 +1507,54 @@ body {
       
       <div class="contact-form">
         <h2 class="section-title">Send a Message</h2>
-        <form onsubmit="handleSubmit(event)" novalidate>
+        <form onsubmit="handleSubmit(event)">
           <div class="form-group">
-            <label class="form-label" for="name">Name *</label>
-            <input type="text" id="name" class="form-input" placeholder="Your full name" required aria-required="true">
+            <label class="form-label" for="name">Name</label>
+            <input type="text" id="name" class="form-input" placeholder="Your full name">
           </div>
           <div class="form-group">
-            <label class="form-label" for="email">Email *</label>
-            <input type="email" id="email" class="form-input" placeholder="your.email@example.com" required aria-required="true">
+            <label class="form-label" for="email">Email</label>
+            <input type="email" id="email" class="form-input" placeholder="your.email@example.com">
           </div>
           <div class="form-group">
-            <label class="form-label" for="subject">Subject *</label>
-            <input type="text" id="subject" class="form-input" placeholder="Subject of your message" required aria-required="true">
+            <label class="form-label" for="subject">Subject</label>
+            <input type="text" id="subject" class="form-input" placeholder="Subject of your message">
           </div>
           <div class="form-group">
-            <label class="form-label" for="message">Message *</label>
-            <textarea id="message" class="form-textarea" placeholder="Your message here..." required aria-required="true"></textarea>
+            <label class="form-label" for="message">Message</label>
+            <textarea id="message" class="form-textarea" placeholder="Your message here..."></textarea>
           </div>
-          <button type="submit" class="form-button" aria-describedby="form-help">Send Message</button>
-          <div id="form-help" class="sr-only">All fields marked with * are required</div>
+          <button type="submit" class="form-button">Send Message</button>
         </form>
       </div>
     </div>
   </main>
   
-  <div id="image-preview-popup" aria-live="polite" aria-label="Image preview"></div>
+  <div id="image-preview-popup"></div>
 </div>
 
 <script>
-// Optimized JavaScript with performance improvements
-
-// Performance optimization: Use modern JS features and efficient DOM manipulation
-const $ = (selector) => document.querySelector(selector);
-const $ = (selector) => document.querySelectorAll(selector);
-
-// Theme management with optimized transitions
+// Theme management - FIXED
 function toggleTheme() {
   const html = document.documentElement;
   const currentTheme = html.getAttribute('data-theme');
   const newTheme = currentTheme === 'dark' ? null : 'dark';
   
-  // Use requestAnimationFrame for smooth transitions
-  requestAnimationFrame(() => {
-    if (newTheme) {
-      html.setAttribute('data-theme', newTheme);
-    } else {
-      html.removeAttribute('data-theme');
-    }
-    
-    localStorage.setItem('theme', newTheme || 'light');
-    
-    // Update icon with optimized animation
-    const icon = $('#theme-icon');
-    icon.style.transform = 'scale(0)';
-    setTimeout(() => {
-      icon.textContent = newTheme === 'dark' ? '☀️' : '🌙';
-      icon.style.transform = 'scale(1)';
-    }, 150);
-    
-    // Track theme change
-    trackEvent('theme_toggle', { theme: newTheme || 'light' });
-  });
+  if (newTheme) {
+    html.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', 'dark');
+    document.getElementById('theme-icon').textContent = '☀️';
+  } else {
+    html.removeAttribute('data-theme');
+    localStorage.setItem('theme', 'light');
+    document.getElementById('theme-icon').textContent = '🌙';
+  }
+  
+  // Track theme change
+  trackEvent('theme_toggle', { theme: newTheme || 'light' });
 }
 
-// Load saved theme on page load with performance optimization
+// Load saved theme on page load
 function loadTheme() {
   const savedTheme = localStorage.getItem('theme') || 'light';
   const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -1720,35 +1562,26 @@ function loadTheme() {
   
   if (theme === 'dark') {
     document.documentElement.setAttribute('data-theme', 'dark');
+    document.getElementById('theme-icon').textContent = '☀️';
+  } else {
+    document.getElementById('theme-icon').textContent = '🌙';
   }
-  $('#theme-icon').textContent = theme === 'dark' ? '☀️' : '🌙';
 }
 
-// Optimized image preview with lazy loading
+// Image preview functions
 let previewTimeout;
 function showPreview(event, imageUrl) {
   clearTimeout(previewTimeout);
-  const popup = $('#image-preview-popup');
+  const popup = document.getElementById('image-preview-popup');
   
-  // Use loading state
-  popup.innerHTML = '<div style="padding: 20px; text-align: center;">Loading...</div>';
+  popup.innerHTML = `<img src="${imageUrl}" alt="Full Preview">`;
   popup.style.display = 'block';
   popup.classList.add('show');
-  
-  // Load image with error handling
-  const img = new Image();
-  img.onload = () => {
-    popup.innerHTML = `<img src="${imageUrl}" alt="Full Preview">`;
-  };
-  img.onerror = () => {
-    popup.innerHTML = '<div style="padding: 20px; color: #e53e3e;">Failed to load image</div>';
-  };
-  img.src = imageUrl;
 }
 
 function hidePreview() {
   previewTimeout = setTimeout(() => {
-    const popup = $('#image-preview-popup');
+    const popup = document.getElementById('image-preview-popup');
     popup.classList.remove('show');
     setTimeout(() => {
       popup.style.display = 'none';
@@ -1757,218 +1590,130 @@ function hidePreview() {
   }, 100);
 }
 
-// Optimized form handling with better validation
+// Form handling
 function handleSubmit(event) {
   event.preventDefault();
   
-  const form = event.target;
-  const formData = new FormData(form);
-  const data = Object.fromEntries(formData.entries());
+  const nameField = document.getElementById('name');
+  const emailField = document.getElementById('email');
+  const subjectField = document.getElementById('subject');
+  const messageField = document.getElementById('message');
   
-  // Enhanced validation
-  const errors = validateForm(data);
-  if (errors.length > 0) {
-    showValidationErrors(errors);
-    return;
-  }
+  const name = nameField.value.trim();
+  const email = emailField.value.trim();
+  const subject = subjectField.value.trim();
+  const message = messageField.value.trim();
   
-  // Show loading state
-  const submitBtn = form.querySelector('.form-button');
-  const originalText = submitBtn.textContent;
-  submitBtn.textContent = 'Sending...';
-  submitBtn.disabled = true;
-  submitBtn.classList.add('loading');
+  let valid = true;
   
-  // Send to Telegram Worker with retry logic
-  sendFormData(data)
-    .then(() => {
-      showCustomAlert(`Thanks for your submission, ${data.name}! I'll get back to you soon.`, "success");
-      form.reset();
-      trackEvent('contact_form', { status: 'success' });
-    })
-    .catch(error => {
-      console.error("Error:", error);
-      showCustomAlert("There was a network error. Please try again later.", "error");
-      trackEvent('contact_form', { status: 'error', error: error.message });
-    })
-    .finally(() => {
-      submitBtn.textContent = originalText;
-      submitBtn.disabled = false;
-      submitBtn.classList.remove('loading');
-    });
-}
-
-// Enhanced form validation
-function validateForm(data) {
-  const errors = [];
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  
-  if (!data.name?.trim()) errors.push({ field: 'name', message: 'Name is required' });
-  if (!data.email?.trim()) errors.push({ field: 'email', message: 'Email is required' });
-  else if (!emailRegex.test(data.email.trim())) errors.push({ field: 'email', message: 'Please enter a valid email address' });
-  if (!data.subject?.trim()) errors.push({ field: 'subject', message: 'Subject is required' });
-  if (!data.message?.trim()) errors.push({ field: 'message', message: 'Message is required' });
-  
-  return errors;
-}
-
-function showValidationErrors(errors) {
-  // Clear previous errors
-  $('.form-input, .form-textarea').forEach(field => {
+  // Reset previous error styles
+  [nameField, emailField, subjectField, messageField].forEach(field => {
     field.classList.remove('input-error');
   });
   
-  // Show new errors
-  errors.forEach(error => {
-    const field = $(`#${error.field}`);
-    if (field) {
-      field.classList.add('input-error');
-    }
-  });
+  // Highlight missing fields
+  if (!name) { nameField.classList.add('input-error'); valid = false; }
+  if (!email) { emailField.classList.add('input-error'); valid = false; }
+  if (!subject) { subjectField.classList.add('input-error'); valid = false; }
+  if (!message) { messageField.classList.add('input-error'); valid = false; }
   
-  showCustomAlert("Please fill in all required fields correctly.", "error");
-}
-
-// Retry mechanism for form submission
-async function sendFormData(data, retries = 3) {
-  for (let i = 0; i < retries; i++) {
-    try {
-      const response = await fetch("https://telegram-worker.lenny-paz123.workers.dev/", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data)
-      });
-      
-      if (response.ok) {
-        return response;
-      }
-      throw new Error(`HTTP ${response.status}`);
-    } catch (error) {
-      if (i === retries - 1) throw error;
-      await new Promise(resolve => setTimeout(resolve, 1000 * (i + 1)));
-    }
+  if (!valid) {
+    showCustomAlert("Please fill in all fields before submitting.", "error");
+    return;
   }
+  
+  // Send to Telegram Worker
+  fetch("https://telegram-worker.lenny-paz123.workers.dev/", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ name, email, subject, message })
+  })
+  .then(res => {
+    if (res.ok) {
+      showCustomAlert(`Thanks for your submission, ${name}! I'll get back to you soon.`, "success");
+      event.target.reset();
+    } else {
+      showCustomAlert("Something went wrong. Please try again.", "error");
+    }
+  })
+  .catch(error => {
+    console.error("Error:", error);
+    showCustomAlert("There was a network error. Please try again later.", "error");
+  });
 }
 
-// Optimized Analytics & Visitor Tracking
+// Analytics & Visitor Tracking - Simplified
 class VisitorAnalytics {
   constructor() {
     this.sessionId = this.generateSessionId();
     this.startTime = Date.now();
-    this.pageViews = new Map();
+    this.pageViews = {};
     this.events = [];
     this.isActive = true;
-    this.lastActivity = Date.now();
-    this.sendQueue = [];
     this.init();
   }
-  
+
   generateSessionId() {
     return Date.now().toString(36) + Math.random().toString(36).substr(2);
   }
-  
+
   init() {
     this.setupActivityTracking();
     this.setupVisibilityTracking();
-    this.setupPerformanceMonitoring();
-    
-    // Batch send analytics
-    setInterval(() => this.batchSendAnalytics(), 30000);
+    setInterval(() => this.sendAnalytics(), 30000);
     window.addEventListener('beforeunload', () => this.sendAnalytics(true));
-    window.addEventListener('pagehide', () => this.sendAnalytics(true));
   }
-  
+
   setupActivityTracking() {
-    const events = ['mousedown', 'mousemove', 'keypress', 'scroll', 'touchstart'];
-    const handler = this.throttle(() => {
-      this.lastActivity = Date.now();
-      this.isActive = true;
-    }, 1000);
-    
-    events.forEach(event => {
-      document.addEventListener(event, handler, { passive: true });
+    let lastActivity = Date.now();
+    ['mousedown', 'mousemove', 'keypress', 'scroll', 'touchstart'].forEach(event => {
+      document.addEventListener(event, () => {
+        lastActivity = Date.now();
+        this.isActive = true;
+      }, { passive: true });
     });
     
-    // Check activity every 30 seconds
     setInterval(() => {
-      if (Date.now() - this.lastActivity > 30000) {
+      if (Date.now() - lastActivity > 30000) {
         this.isActive = false;
       }
     }, 30000);
   }
-  
+
   setupVisibilityTracking() {
-    let visibilityChangeTime = Date.now();
-    
     document.addEventListener('visibilitychange', () => {
-      const now = Date.now();
       if (document.hidden) {
-        this.trackEvent('page_blur', { duration: now - visibilityChangeTime });
+        this.trackEvent('page_blur');
       } else {
         this.trackEvent('page_focus');
-        visibilityChangeTime = now;
       }
     });
   }
-  
-  setupPerformanceMonitoring() {
-    // Track Core Web Vitals
-    if ('web-vital' in window) {
-      import('web-vitals').then(({ getCLS, getFID, getFCP, getLCP, getTTFB }) => {
-        getCLS(metric => this.trackEvent('web_vital', { name: 'CLS', value: metric.value }));
-        getFID(metric => this.trackEvent('web_vital', { name: 'FID', value: metric.value }));
-        getFCP(metric => this.trackEvent('web_vital', { name: 'FCP', value: metric.value }));
-        getLCP(metric => this.trackEvent('web_vital', { name: 'LCP', value: metric.value }));
-        getTTFB(metric => this.trackEvent('web_vital', { name: 'TTFB', value: metric.value }));
-      }).catch(() => {
-        // Fallback to basic performance monitoring
-        this.trackBasicPerformance();
-      });
-    } else {
-      this.trackBasicPerformance();
-    }
-  }
-  
-  trackBasicPerformance() {
-    if (performance.timing) {
-      const timing = performance.timing;
-      const loadTime = timing.loadEventEnd - timing.navigationStart;
-      this.trackEvent('page_load_time', { duration: loadTime });
-    }
-  }
-  
+
   trackPageView(pageId) {
     const now = Date.now();
     if (this.currentPage && this.pageStartTime) {
       const timeSpent = now - this.pageStartTime;
-      this.pageViews.set(this.currentPage, (this.pageViews.get(this.currentPage) || 0) + timeSpent);
+      this.pageViews[this.currentPage] = (this.pageViews[this.currentPage] || 0) + timeSpent;
     }
     this.currentPage = pageId;
     this.pageStartTime = now;
     this.trackEvent('page_view', { page: pageId });
   }
-  
+
   trackEvent(eventName, data = {}) {
-    this.events.push({ 
-      event: eventName, 
-      timestamp: Date.now(), 
-      data,
-      url: window.location.href,
-      userAgent: navigator.userAgent
-    });
-    
-    // Limit events array size for memory optimization
+    this.events.push({ event: eventName, timestamp: Date.now(), data });
+    // Limit events array size
     if (this.events.length > 100) {
       this.events = this.events.slice(-50);
     }
   }
-  
+
   getEngagementMetrics() {
     const totalTime = Date.now() - this.startTime;
-    const activePages = this.pageViews.size;
-    const totalPageTime = Array.from(this.pageViews.values()).reduce((a, b) => a + b, 0);
-    const averageTimePerPage = activePages > 0 ? totalPageTime / activePages : 0;
-    
+    const activePages = Object.keys(this.pageViews).length;
+    const averageTimePerPage = activePages > 0 ? Object.values(this.pageViews).reduce((a, b) => a + b, 0) / activePages : 0;
+
     return {
       sessionId: this.sessionId,
       totalSessionTime: totalTime,
@@ -1979,86 +1724,28 @@ class VisitorAnalytics {
       userAgent: navigator.userAgent,
       referrer: document.referrer,
       screenResolution: `${screen.width}x${screen.height}`,
-      devicePixelRatio: window.devicePixelRatio || 1,
-      language: navigator.language,
-      timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
       timestamp: new Date().toISOString()
     };
   }
-  
-  async batchSendAnalytics() {
-    if (!this.isActive || this.sendQueue.length === 0) return;
-    
+
+  async sendAnalytics(final = false) {
+    const metrics = this.getEngagementMetrics();
+    if (!final && !this.isActive) return;
+
     try {
-      const metrics = this.getEngagementMetrics();
-      const payload = {
-        type: 'analytics',
-        metrics: { ...metrics, isActive: this.isActive },
-        events: this.events.slice(-20) // Send last 20 events
-      };
-      
-      // Use sendBeacon for better reliability
-      if (navigator.sendBeacon) {
-        navigator.sendBeacon(
-          'https://ir-analytics.lenny-paz123.workers.dev/',
-          JSON.stringify(payload)
-        );
-      } else {
-        await fetch('https://ir-analytics.lenny-paz123.workers.dev/', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload),
-          keepalive: true
-        });
-      }
-      
+      await fetch('https://ir-analytics.lenny-paz123.workers.dev/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          type: 'analytics',
+          metrics: { ...metrics, isActive: final ? false : this.isActive },
+          events: this.events.slice(-50)
+        })
+      });
       this.events = [];
     } catch (error) {
       console.log('Analytics send failed:', error);
     }
-  }
-  
-  async sendAnalytics(final = false) {
-    const metrics = this.getEngagementMetrics();
-    
-    try {
-      const payload = {
-        type: 'analytics',
-        metrics: { ...metrics, isActive: final ? false : this.isActive },
-        events: this.events.slice(-50)
-      };
-      
-      if (final && navigator.sendBeacon) {
-        navigator.sendBeacon(
-          'https://ir-analytics.lenny-paz123.workers.dev/',
-          JSON.stringify(payload)
-        );
-      } else {
-        await fetch('https://ir-analytics.lenny-paz123.workers.dev/', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload),
-          keepalive: final
-        });
-      }
-      
-      if (!final) this.events = [];
-    } catch (error) {
-      console.log('Analytics send failed:', error);
-    }
-  }
-  
-  // Utility function for throttling
-  throttle(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-      const later = () => {
-        clearTimeout(timeout);
-        func(...args);
-      };
-      clearTimeout(timeout);
-      timeout = setTimeout(later, wait);
-    };
   }
 }
 
@@ -2069,24 +1756,24 @@ function trackEvent(eventName, data = {}) {
   }
 }
 
-// Optimized custom alert system
+// Custom alert system
 function showCustomAlert(message, type = "success") {
   // Remove existing alerts
-  const existingAlert = $('.custom-alert');
+  const existingAlert = document.querySelector('.custom-alert');
   if (existingAlert) existingAlert.remove();
-  
+
   const alert = document.createElement('div');
   alert.className = `custom-alert custom-alert-${type}`;
   alert.innerHTML = `
     <div class="custom-alert-content">
       <span class="custom-alert-icon">${type === 'success' ? '✓' : '⚠'}</span>
       <span class="custom-alert-message">${message}</span>
-      <button class="custom-alert-close" onclick="this.parentElement.parentElement.remove()" aria-label="Close alert">×</button>
+      <button class="custom-alert-close" onclick="this.parentElement.parentElement.remove()">×</button>
     </div>
   `;
-  
+
   document.body.appendChild(alert);
-  
+
   // Auto remove after 5 seconds
   setTimeout(() => {
     if (alert.parentNode) {
@@ -2096,100 +1783,71 @@ function showCustomAlert(message, type = "success") {
   }, 5000);
 }
 
-// Optimized mobile menu
+// Mobile menu functions
 function toggleMobileMenu() {
-  const sidebar = $('.sidebar');
-  const overlay = $('.mobile-overlay');
-  
+  const sidebar = document.querySelector('.sidebar');
+  const overlay = document.querySelector('.mobile-overlay');
+
   sidebar.classList.toggle('open');
   overlay.classList.toggle('active');
-  
+
   // Prevent body scroll when menu is open
   document.body.style.overflow = sidebar.classList.contains('open') ? 'hidden' : '';
-  
+
   trackEvent('mobile_menu', { action: sidebar.classList.contains('open') ? 'open' : 'close' });
 }
 
 function closeMobileMenu() {
-  const sidebar = $('.sidebar');
-  const overlay = $('.mobile-overlay');
-  
+  const sidebar = document.querySelector('.sidebar');
+  const overlay = document.querySelector('.mobile-overlay');
+
   sidebar.classList.remove('open');
   overlay.classList.remove('active');
   document.body.style.overflow = '';
 }
 
-// Optimized page navigation with history management
+// Page navigation - FIXED
 function showPage(pageId, event = {}, push = true) {
-  // Performance optimization: batch DOM updates
-  requestAnimationFrame(() => {
-    // Hide all pages
-    $('.page').forEach(page => {
-      page.classList.remove('active');
-    });
-    
-    // Show selected page with transition
-    const selectedPage = $(`#${pageId}`);
-    if (selectedPage) {
-      selectedPage.classList.add('active');
-      
-      // Trigger any lazy-loaded content
-      triggerLazyContent(selectedPage);
-    }
-    
-    // Update navigation styling
-    $('.nav-link').forEach(link => {
-      link.classList.remove('active');
-      link.removeAttribute('aria-current');
-    });
-    
-    if (event?.target) {
-      event.target.classList.add('active');
-      event.target.setAttribute('aria-current', 'page');
-    }
-    
-    // Scroll to top smoothly
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    
-    // Push to browser history
-    if (push && history.pushState) {
-      history.pushState({ pageId }, '', `#${pageId}`);
-    }
-    
-    // Update document title
-    document.title = `Lenny Paz - ${pageId.charAt(0).toUpperCase() + pageId.slice(1).replace('-', ' ')}`;
-    
-    // Track page view
-    if (analytics) {
-      analytics.trackPageView(pageId);
-    }
-    
-    // Close mobile menu
-    closeMobileMenu();
+  // Hide all pages
+  const pages = document.querySelectorAll('.page');
+  pages.forEach(page => {
+    page.classList.remove('active');
   });
+
+  // Show selected page
+  const selectedPage = document.getElementById(pageId);
+  if (selectedPage) {
+    selectedPage.classList.add('active');
+  }
+
+  // Update navigation styling
+  const navLinks = document.querySelectorAll('.nav-link');
+  navLinks.forEach(link => {
+    link.classList.remove('active');
+  });
+
+  if (event?.target) {
+    event.target.classList.add('active');
+  }
+
+  // Scroll to top
+  window.scrollTo(0, 0);
+
+  // Push to browser history
+  if (push && history.pushState) {
+    history.pushState({ pageId }, '', `#${pageId}`);
+  }
+
+  // Track page view
+  if (analytics) {
+    analytics.trackPageView(pageId);
+  }
+
+  // Close mobile menu
+  closeMobileMenu();
 }
 
-// Lazy content loading
-function triggerLazyContent(container) {
-  const lazyImages = container.querySelectorAll('img[loading="lazy"]');
-  lazyImages.forEach(img => {
-    if ('IntersectionObserver' in window) {
-      const imageObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const img = entry.target;
-            img.src = img.dataset.src || img.src;
-            img.classList.remove('lazy');
-            observer.unobserve(img);
-          }
-        });
-      });
-      imageObserver.observe(img);
-    }
-  });
-}
-
-// Enhanced Konami code with performance optimization
+// Konami code easter egg
 const konamiCode = [
   "ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown",
   "ArrowLeft", "ArrowRight", "ArrowLeft", "ArrowRight",
@@ -2200,7 +1858,7 @@ let keySequence = [];
 function handleKonamiCode(e) {
   keySequence.push(e.code);
   keySequence = keySequence.slice(-konamiCode.length);
-  
+
   if (keySequence.join(',') === konamiCode.join(',')) {
     launchEmojiConfetti();
     trackEvent('konami_code', { activated: true });
@@ -2208,9 +1866,9 @@ function handleKonamiCode(e) {
 }
 
 function launchEmojiConfetti() {
-  const emojis = ["🎉", "✨", "🥳", "🎊", "💫", "🌟", "🎈", "🎁"];
-  const count = 50;
-  
+  const emojis = ["🎉", "✨", "🥳", "🎊", "💫", "🌟"];
+  const count = 30;
+
   for (let i = 0; i < count; i++) {
     setTimeout(() => {
       const confetti = document.createElement("div");
@@ -2225,191 +1883,62 @@ function launchEmojiConfetti() {
         pointer-events: none;
       `;
       document.body.appendChild(confetti);
-      
+
       setTimeout(() => confetti.remove(), 5000);
     }, i * 100);
   }
 }
 
-// Optimized intersection observer for animations
-const createAnimationObserver = () => {
-  if (!('IntersectionObserver' in window)) return;
-  
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('animate-in');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, {
-    threshold: 0.1,
-    rootMargin: '50px 0px'
-  });
-  
-  return observer;
-};
-
-// Enhanced keyboard navigation
-function setupKeyboardNavigation() {
-  document.addEventListener('keydown', (e) => {
-    // ESC to close mobile menu
-    if (e.key === 'Escape') {
-      closeMobileMenu();
-      hidePreview();
-    }
-    
-    // Arrow keys for page navigation
-    if (e.altKey) {
-      const pages = ['home', 'education', 'experience', 'technical-skills', 'career-goals', 'contact'];
-      const currentIndex = pages.indexOf(window.location.hash.replace('#', '') || 'home');
-      
-      if (e.key === 'ArrowLeft' && currentIndex > 0) {
-        const prevPage = pages[currentIndex - 1];
-        const navLink = $(`.nav-link[onclick*="${prevPage}"]`);
-        if (navLink) showPage(prevPage, { target: navLink });
-      } else if (e.key === 'ArrowRight' && currentIndex < pages.length - 1) {
-        const nextPage = pages[currentIndex + 1];
-        const navLink = $(`.nav-link[onclick*="${nextPage}"]`);
-        if (navLink) showPage(nextPage, { target: navLink });
-      }
-    }
-  });
-}
-
-// Error boundary for JavaScript errors
-window.addEventListener('error', (event) => {
-  console.error('JavaScript error:', event.error);
-  if (analytics) {
-    analytics.trackEvent('javascript_error', {
-      message: event.message,
-      filename: event.filename,
-      lineno: event.lineno,
-      colno: event.colno
-    });
-  }
-});
-
-// Resource loading optimization
-function optimizeResources() {
-  // Preload critical images
-  const criticalImages = [
-    '../Web Project Images/IR Web.png',
-    '../Web Project Images/IR SQL.png',
-    '../Web Project Images/IR Wire.png'
-  ];
-  
-  criticalImages.forEach(src => {
-    const link = document.createElement('link');
-    link.rel = 'preload';
-    link.as = 'image';
-    link.href = src;
-    document.head.appendChild(link);
-  });
-}
-
 // Main initialization
 document.addEventListener('DOMContentLoaded', () => {
-  // Load theme first for no-flash experience
+  // Load theme first
   loadTheme();
-  
+
   // Initialize analytics
   analytics = new VisitorAnalytics();
-  
-  // Setup observers and navigation
-  const animationObserver = createAnimationObserver();
-  setupKeyboardNavigation();
-  optimizeResources();
-  
+
   // Handle initial page load
   const hash = window.location.hash.replace('#', '') || 'home';
-  const navLink = $(`.nav-link[onclick*="${hash}"]`);
+  const navLink = document.querySelector(`.nav-link[onclick*="${hash}"]`);
   if (navLink) {
     showPage(hash, { target: navLink }, false);
   }
-  
-  // Setup intersection observers for visible sections
-  if (animationObserver) {
-    $('[data-page]').forEach(section => {
-      animationObserver.observe(section);
-    });
-  }
-  
+
   // Track form interactions
-  $('.form-input, .form-textarea').forEach(input => {
-    input.addEventListener('focus', () => trackEvent('form_field_focus', { field: input.id }), { once: true });
-    input.addEventListener('blur', () => trackEvent('form_field_blur', { field: input.id }), { once: true });
+  document.querySelectorAll('.form-input, .form-textarea').forEach(input => {
+    input.addEventListener('focus', () => trackEvent('form_field_focus', { field: input.id }));
+    input.addEventListener('blur', () => trackEvent('form_field_blur', { field: input.id }));
   });
-  
+
   // Track external link clicks
-  $('a[href^="http"]').forEach(link => {
-    link.addEventListener('click', () => trackEvent('external_link_click', { url: link.href }), { once: true });
+  document.querySelectorAll('a[href^="http"]').forEach(link => {
+    link.addEventListener('click', () => trackEvent('external_link_click', { url: link.href }));
   });
-  
+
   // Track project interactions
-  $('.project-card').forEach(card => {
+  document.querySelectorAll('.project-card').forEach(card => {
     const projectName = card.dataset.project;
-    card.addEventListener('mouseenter', () => trackEvent('project_hover', { project: projectName }), { once: true });
+    card.addEventListener('mouseenter', () => trackEvent('project_hover', { project: projectName }));
     card.addEventListener('click', () => trackEvent('project_click', { project: projectName }));
   });
-  
+
   // Setup konami code
   document.addEventListener('keydown', handleKonamiCode);
-  
+
   // Close mobile menu when clicking nav links
-  $('.nav-link').forEach(link => {
+  document.querySelectorAll('.nav-link').forEach(link => {
     link.addEventListener('click', closeMobileMenu);
-    
-    // Add keyboard support
-    link.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        link.click();
-      }
-    });
   });
-  
-  // Performance monitoring
-  if ('PerformanceObserver' in window) {
-    try {
-      const perfObserver = new PerformanceObserver((list) => {
-        list.getEntries().forEach((entry) => {
-          if (entry.entryType === 'largest-contentful-paint') {
-            trackEvent('performance_metric', { 
-              type: 'LCP', 
-              value: entry.startTime 
-            });
-          }
-        });
-      });
-      perfObserver.observe({ entryTypes: ['largest-contentful-paint'] });
-    } catch (e) {
-      // Fallback for browsers that don't support PerformanceObserver
-    }
-  }
 });
 
 // Back/Forward button handling
 window.addEventListener('popstate', (e) => {
   const pageId = e.state?.pageId || window.location.hash.replace('#', '') || 'home';
-  const navLink = $(`.nav-link[onclick*="${pageId}"]`);
+  const navLink = document.querySelector(`.nav-link[onclick*="${pageId}"]`);
   if (navLink) {
     showPage(pageId, { target: navLink }, false);
   }
 });
-
-// Service Worker registration for offline functionality (optional)
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js')
-      .then(registration => {
-        console.log('SW registered: ', registration);
-      })
-      .catch(registrationError => {
-        console.log('SW registration failed: ', registrationError);
-      });
-  });
-}
 </script>
 </body>
 </html>
